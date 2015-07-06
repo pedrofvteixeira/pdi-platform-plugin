@@ -18,12 +18,13 @@
 package org.pentaho.platform.plugin.kettle;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.userdetails.UserDetails;
-import org.springframework.security.userdetails.UserDetailsService;
-import org.springframework.security.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class StubUserDetailService implements UserDetailsService {
 
@@ -68,8 +69,9 @@ public class StubUserDetailService implements UserDetailsService {
       }
       
       @Override
-      public GrantedAuthority[] getAuthorities() {
-        return new GrantedAuthority[]{};
+      public Collection<? extends GrantedAuthority> getAuthorities() {
+        GrantedAuthority[] authorities = new GrantedAuthority[]{};
+        return Arrays.asList( authorities );
       }
     };
   }
